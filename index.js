@@ -1,7 +1,7 @@
 import express  from "express"; 
 import cors     from "cors"; 
 import ProvinceRouter from "./src/controllers/province-controller.js" 
-import 'configs/config'
+import 'dotenv'
 
 const app  = express(); 
 const port = process.env.PORT || 3000;
