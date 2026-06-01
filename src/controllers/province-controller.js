@@ -4,12 +4,12 @@ import ProvinciaService from './../services/provincia-service.js'
 import Provincia from './../entities/provincia.js'
 
 const router = Router();
-const currentService = new ProvinciaService();
+const currentService = new ProvinciaService();   
 
-router.get('', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const returnArray = await currentService.getAllAsync();
-        if (returnArray != null){
+        if (returnArray && returnArray.length > 0){
             res.status(StatusCodes.OK).json(returnArray);
         } else {
             res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(`Error interno.`);
@@ -53,7 +53,7 @@ router.post('', async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
         let id = parseInt(req.params.id);
-        let entity = req.body;
+        let entity = req.body; 
 
         if (entity.id && parseInt(entity.id) !== id) {
             return res.status(StatusCodes.BAD_REQUEST).send(`El id de la URL (${id}) no coincide con el id del body (${entity.id}).`);
@@ -62,7 +62,7 @@ router.put('/:id', async (req, res) => {
         entity.id = id;
         const rowsAffected = await currentService.updateAsync(entity);
         if (rowsAffected != 0){
-            res.status(StatusCodes.OK).json(rowsAffected);
+            res.status(StatusCodes.CREATED).json(rowsAffected);
         } else {
             res.status(StatusCodes.NOT_FOUND).send(`No se encontro la entidad (id:${id}).`);
         }
@@ -77,7 +77,7 @@ router.delete('/:id', async (req, res) => {
         let id = req.params.id;
         const rowCount = await currentService.deleteByIdAsync(id);
         if (rowCount != 0){
-            res.status(StatusCodes.OK).json(null);
+            res.status(StatusCodes.OK).json("se borro correctamente");
         } else {
             res.status(StatusCodes.NOT_FOUND).send(`No se encontro la entidad (id:${id}).`);
         }

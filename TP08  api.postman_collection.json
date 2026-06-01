@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "e44bf707-8228-4987-bb8c-b97136616868",
+		"name": "TP08  api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST http://localhost:3000/api/province",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Mendoza\",\r\n  \"latitude\": -32.8895,\r\n  \"longitude\": -68.8458,\r\n  \"fullname\": \"Provincia de Mendoza\",\r\n  \"displayorder\": 3\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/province",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"province"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT http://localhost:3000/api/province/24",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"San Juan Actualizada\",\r\n  \"latitude\": -31.5375,\r\n  \"longitude\": -68.5364,\r\n  \"fullname\": \"Provincia de San Juan (editada)\",\r\n  \"displayorder\": 10\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/province/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"province",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/province/24",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/province/29",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"province",
+						"29"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

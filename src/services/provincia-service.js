@@ -6,7 +6,7 @@ export default class ProvinciaService {
     }
 
      getAllAsync = async () => {
-        const returnArray = await this.ProvinciaRepository.getAllProvincias;
+        const returnArray = await this.ProvinciaRepository.getAllProvincias();
         if (returnArray == null) return null;
         return returnArray
     }

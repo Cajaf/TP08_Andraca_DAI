@@ -36,31 +36,31 @@ export default class ProvinciaRepository {
                 returnEntity = result.rows[0];
             }
         } catch (error) {
-            LogHelper.logError(error);
+            console.log(error);
         } 
         return returnEntity;
     }
 
     deleteByIdAsync = async (id) => {
-        let returnEntity = null;
+        let returnRows = null;
          try {
             const sql = `DELETE FROM provincias WHERE id=$1`;
             const values = [id];
             const result = await this.getDBPool().query(sql, values);
-            returnArray = result.rows;
+            returnRows = result.rowCount;
         } catch (error) {
             console.log(error)
         }
-        return returnEntity;
+        return returnRows;
     }
 
      updateAsync = async (entity) => {
-        let returnEntity = null;
+        let returnRows = null;
          try {
             let id = entity.id;
             const previousEntity = await this.getByIdAsync(id);
             if (previousEntity == null) return 0;
-            const sql = `UPDATE alumnos SET
+            const sql = `UPDATE provincias SET
                         name              = $2,
                         latitude            = $3,
                         longitude            = $4,
@@ -76,20 +76,19 @@ export default class ProvinciaRepository {
             entity?.displayorder    ?? previousEntity?.displayorder
         ];
             const result = await this.getDBPool().query(sql, values);
-            returnArray = result.rows;
+            returnRows = result.rowCount;
         } catch (error) {
             console.log(error)
         }
-        return returnEntity;
+        return returnRows;
     }
-}
+
 
     createAsync = async (entity) => {
-        console.log(`AlumnosRepository.createAsync(${JSON.stringify(entity)})`);
         let newId = 0;
 
         try {
-            const sql = ` INSERT INTO alumnos (
+            const sql = ` INSERT INTO provincias (
                             name              , 
                             latitude            , 
                             longitude            , 
@@ -111,7 +110,8 @@ export default class ProvinciaRepository {
             const resultPg = await this.getDBPool().query(sql, values);
             newId = resultPg.rows[0].id;
         } catch (error) {
-            LogHelper.logError(error);
+            console.log(error);
         }
         return newId;
     }
+}
